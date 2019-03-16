@@ -1,8 +1,15 @@
+## The main code is by @christophM
+## available at https://github.com/christophM/interpretable-ml-book/blob/master/manuscript/05.8-agnostic-lime.Rmd
+
+## load libraries
 library(shiny)
 library(tidyverse)
 library(iml)
 
+## import functions and set theme
 source("utils.R")
+theme_set(my_theme())
+default_color = "azure4"
 
 set.seed(1)
 
@@ -38,7 +45,7 @@ lime_training_df <-  data.frame(x1 = x1,
 ## create rf model
 rf <-  randomForest::randomForest(y_noisy ~ x1 + x2,
                                   data = lime_training_df, ntree = 100)
-## predict training ata labels
+## predict training data labels
 lime_training_df$predicted <-  predict(rf, lime_training_df)
 
 # draw n_sample for the LIME explanations
@@ -65,6 +72,7 @@ grid_df$predicted <- predict(rf, newdata = grid_df) %>%
 
 # Define UI  ---------------------------------------------
 ui <- fluidPage(
+  titlePanel("LIME Explainer Demo"),
   sidebarLayout(
     sidebarPanel(
       
@@ -74,11 +82,22 @@ ui <- fluidPage(
       
       ## check boks for showing labels/points
       checkboxInput("show_labels", "Show Labels", value = TRUE),
-      checkboxInput("show_points", "Show Points", value = FALSE)
+      checkboxInput("show_points", "Show Points", value = FALSE),
+      
+      helpText("Based on an example in the book:",
+               tags$a("Interpretable Machine Learning", 
+                      href = "https://christophm.github.io/interpretable-ml-book/lime.html"),
+               "by",
+               tags$a("Christoph Molnar.",
+                      href = "https://github.com/christophM"))
+      
     ),
     mainPanel(
       ## show plot
       plotOutput("scatter"),
+      helpText("Original Model: Rendom Forest.",
+               tags$br(),
+               "Local Model: Logistic Regression."),
       verbatimTextOutput("point_selected")
     )
   )
@@ -92,14 +111,14 @@ server <- function(input, output) {
     df_ex <- data_frame(x1 = input$explain_x1,
                         x2 = input$explain_x2)
     df_ex$y_predicted = predict(rf, newdata = df_ex)[[1]]
-    print(df_ex)
     df_ex
   })
   
   output$point_selected = renderPrint({
-    glue::glue("Selected point: {df_explain()$x1}, {df_explain()$x2}",
-               "\n",
-               "Predicted label: {df_explain()$y_predicted}")
+    glue::glue("Selected point: {df_explain()$x1}, {df_explain()$x2}"
+               # "\n",
+               # "Predicted label: {df_explain()$y_predicted}"
+               )
   })
   
   ## point_explain_scaled
@@ -188,9 +207,10 @@ server <- function(input, output) {
     }
     
     ## add log reg boundary
-    g+
+    g <- g+
       geom_line(data = logistic_boundary_df(),
                 aes(x = x1, y = x2), color = 'gray50')
+    g
   })
   
 }
