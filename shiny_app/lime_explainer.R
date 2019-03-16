@@ -91,7 +91,11 @@ ui <- fluidPage(
                       href = "https://christophm.github.io/interpretable-ml-book/lime.html"),
                "by",
                tags$a("Christoph Molnar.",
-                      href = "https://github.com/christophM"))
+                      href = "https://github.com/christophM"),
+               tags$hr(),
+               tags$a("Source Code",
+                      href = "https://github.com/OmaymaS/lime_explainer")
+               )
       
     ),
     mainPanel(
