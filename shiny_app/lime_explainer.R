@@ -86,7 +86,7 @@ ui <- fluidPage(
       checkboxInput("show_labels", "Show Labels", value = TRUE),
       checkboxInput("show_points", "Show Points", value = FALSE),
       
-      helpText("Based on an example in the book:",
+      helpText("Based on an example in:",
                tags$a("Interpretable Machine Learning", 
                       href = "https://christophm.github.io/interpretable-ml-book/lime.html"),
                "by",
