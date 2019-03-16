@@ -1,10 +1,11 @@
-#' Kernel function
+## Source : https://github.com/christophM/interpretable-ml-book/blob/master/R/lime.R
 
+# Kernel function
 kernel = function(d, kernel_width){
   sqrt(exp(-(d^2) / kernel_width^2))
 }
 
-#' Get euclidean distances of samples to instances to be explained
+# Get euclidean distances of samples to instances to be explained
 get_distances = function(point_explain, points_sample){
   # euclidean distance
   apply(points_sample, 1, function(x){
@@ -22,14 +23,8 @@ get_y = function(x1, x2, noise_prob = 0){
 }
 
 
-
 # define graphics theme
-my_theme = function(legend.position='right'){
+my_theme = function(legend.position ='right'){
   theme_bw() %+replace%
     theme(legend.position=legend.position)
 }
-
-theme_set(my_theme())
-
-
-default_color = "azure4"
