@@ -5,6 +5,7 @@
 library(shiny)
 library(tidyverse)
 library(iml)
+library(shinythemes)
 
 ## import functions and set theme
 source("utils.R")
@@ -72,6 +73,7 @@ grid_df$predicted <- predict(rf, newdata = grid_df) %>%
 
 # Define UI  ---------------------------------------------
 ui <- fluidPage(
+  theme = shinytheme("flatly"),
   titlePanel("LIME Explainer Demo"),
   sidebarLayout(
     sidebarPanel(
