@@ -4,6 +4,8 @@ This is a simple Shiny App, implementing an example about LIME by [Christoph Mol
 
 
 ![](https://github.com/OmaymaS/lime_explainer/blob/master/img/app_demo.gif)
+[Source Code](https://github.com/OmaymaS/lime_explainer/tree/master/lime_explainer_shiny)
+[Online App](https://omaymas.shinyapps.io/lime_explainer/)
 
 
 ### TO DO
