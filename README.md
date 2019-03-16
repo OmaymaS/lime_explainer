@@ -11,6 +11,7 @@ This is a simple Shiny App, implementing an example about LIME by [Christoph Mol
 
 ### TO DO
 
-- Add other models
-- Turn other values into variables *(e.g. Kernel size, sample size, etc.)*
-- Write better help text
+- Add other models.
+- Turn other values into variables *(e.g. Kernel size, sample size, etc.)*.
+- Write better help text.
+- Polish the App code and add comments.
