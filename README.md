@@ -4,3 +4,10 @@ This is a simple Shiny App, implementing an example about LIME by [Christoph Mol
 
 
 ![](https://github.com/OmaymaS/lime_explainer/blob/master/img/app_demo.gif)
+
+
+### TO DO
+
+- Add other models
+- Turn other values into variables *(e.g. Kernel size, sample size, etc.)*
+- Write better help text
